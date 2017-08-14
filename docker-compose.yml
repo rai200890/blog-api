@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    build: .
+    container_name: node-project-web
+    command: npm start
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    env_file: .env
