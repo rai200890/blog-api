@@ -2,11 +2,18 @@ version: '2'
 services:
   web:
     build: .
-    container_name: node-project-web
+    container_name: blog-api-web
     command: npm start
+    links:
+      - db
+    depends_on:
+      - db
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
     ports:
       - "3000:3000"
     env_file: .env
+  db:
+    image: mongo:3.0.15
+    container_name: blog-api-db
